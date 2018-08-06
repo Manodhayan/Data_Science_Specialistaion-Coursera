@@ -1,0 +1,52 @@
+---
+title: "Analysing Air Quality Data"
+author: "Manodhayan"
+date: "6 August 2018"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Air Pollution
+
+- Pollution is now a common place term, that our ears are attuned to. We hear about the various forms of pollution and read about it through the mass media.
+
+- Air pollution can further be classified into two sections- Visible air pollution and invisible air pollution
+
+- The Ozone layer considered crucial for the existence of the ecosystems on the planet is depleting due to increased pollution.
+
+
+## Getting into the Data
+
+```{r cars, echo = TRUE}
+head(airquality)
+```
+
+## Ozone vs Wind
+```{r plot1}
+library(ggplot2)
+data<-na.omit(airquality)
+ggplot(data=data,aes(Wind,Ozone))+geom_smooth(method='lm')
+```
+
+## Ozone vs Temp
+```{r Temp}
+ggplot(data=data,aes(Temp,Ozone))+geom_smooth(method='lm')
+```
+
+## Ozone vs Solar.R
+```{r Solar}
+ggplot(data=data,aes(Solar.R,Ozone))+geom_smooth(method='lm')
+```
+
+## Linear Model Fit Results
+
+```{r final,echo=FALSE}
+fit<- lm(Ozone~.,data=data)
+par(mfrow=c(2,2))
+plot(fit)
+```
+
+## Thank You
